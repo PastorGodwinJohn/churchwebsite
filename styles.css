@@ -1,0 +1,302 @@
+/* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lora', serif; /* Or any other fancy font */
+  background-color: #fff;
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Full-Screen Slider Container */
+.slider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 1s ease-in-out;
+}
+
+/* Each Full-Screen Slide */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transition: left 1s ease-in-out, opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+/* Make the Active Slide Visible */
+.slide.active {
+  left: 0;
+  opacity: 1;
+}
+
+/* Section 1: Image Background with Text */
+.slide-1 {
+  position: relative;
+  background-image: url('hero-image.png'); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+.slide-1 .content {
+  position: relative;
+  z-index: 1; /* Ensure text stays above overlay */
+  padding: 20px;
+}
+
+.slide-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: 0; /* Place overlay behind the text */
+}
+
+
+.content h1, .content p {
+  margin: 0;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Subtle shadow for contrast */
+}
+
+.content h1 {
+  font-size: 5rem; /* Larger text for the main heading */
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.content p {
+  font-size: 2rem; /* Larger font for subtext */
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.content {
+  animation: drop-in 1.5s ease-in-out;
+}
+
+@keyframes drop-in {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Section 2: Solid Background with Text */
+.slide-2 {
+  background-color: #8B9F4E; /* Olive Green */
+}
+
+.slide-2 .content {
+  animation: slide-in-right 1.5s ease-in-out;
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-2 h2 {
+  font-size: 5.5rem; /* Bold and big heading */
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #CC5500; /* Burnt Orange */
+}
+
+.slide-2 p {
+  font-size: 2.5rem;
+  line-height: 1.8;
+  font-weight: 400;
+  text-align: center;
+ 
+}
+
+/* Section 3: Six Equal Boxes */
+.slide-3 {
+  background-color: #FF6F61; /* Coral pink background */
+}
+
+.boxes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+ 
+}
+
+.box {
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #fff; /* White background for individual boxes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box i {
+  font-size: 5rem; /* Larger icons */
+  color: #4A90E2; /* Complementary blue color for icons */
+}
+
+.box h3, .box p {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #2F4F4F; /* Dark slate gray for text (complementary to coral) */
+}
+
+.box p {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.first-box {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .boxes-container {
+    grid-template-columns: 1fr;
+  }
+
+  .box h3 {
+    font-size: 2rem;
+  }
+
+  .box p {
+    font-size: 1.4rem;
+  }
+}
+
+
+/* Section 4: Text with Image Frame */
+.slide-4 {
+  background-color: #A8D8FF; /* Soft Blue */
+}
+
+.text-container h2 {
+  font-size: 4.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.image-frame {
+  margin-top: 20px;
+  padding: 20px;
+  border: 3px solid #fff;
+  display: inline-block;
+}
+
+.image-frame img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+/* Section 5 and 6: Similar Style */
+.slide-5, .slide-6 {
+  background-color: #2C3E50;
+  color: white;
+  text-align: center;
+}
+
+.slide-5 h2, .slide-6 h2 {
+  font-size: 4.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.slide-5 p, .slide-6 p {
+  font-size: 2rem;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* Navigation Buttons */
+.navigation {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  background-color: #FF6B6B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #F4A1A1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content p {
+    font-size: 1.6rem;
+  }
+
+  .slide-2 h2 {
+    font-size: 3.5rem;
+  }
+
+  .slide-2 p {
+    font-size: 1.6rem;
+  }
+
+  .box h3 {
+    font-size: 2rem;
+  }
+
+  .box p {
+    font-size: 1.4rem;
+  }
+
+  .text-container h2 {
+    font-size: 3.5rem;
+  }
+
+  .slide-5 h2, .slide-6 h2 {
+    font-size: 3.5rem;
+  }
+
+  .slide-5 p, .slide-6 p {
+    font-size: 1.6rem;
+  }
+}
